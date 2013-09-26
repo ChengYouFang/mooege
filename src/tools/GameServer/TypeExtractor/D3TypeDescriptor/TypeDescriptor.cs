@@ -182,9 +182,25 @@ namespace D3TypeDescriptor
         public virtual void GenerateOptionalParseBitBuffer(StringBuilder b, int pad, FieldDescriptor f, string bitBufferName) { throw new NotImplementedException(); }
         public virtual void GenerateOptionalEncodeBitBuffer(StringBuilder b, int pad, FieldDescriptor f, string bitBufferName) { throw new NotImplementedException(); }
 
-        public virtual void GenerateFixedArrayField(StringBuilder b, int pad, FieldDescriptor f) { throw new NotImplementedException(); }
-        public virtual void GenerateFixedArrayParseBitBuffer(StringBuilder b, int pad, FieldDescriptor f, string bitBufferName) { throw new NotImplementedException(); }
-        public virtual void GenerateFixedArrayEncodeBitBuffer(StringBuilder b, int pad, FieldDescriptor f, string bitBufferName) { throw new NotImplementedException(); }
+        public virtual void GenerateFixedArrayField(StringBuilder b, int pad, FieldDescriptor f) 
+        {
+            b.Append(' ', pad); b.AppendLine("\\\\TESTING");
+            b.Append(' ', pad); b.AppendLine("public byte["+ f.ArrayLength +"] _" + f.GetFieldName() + ";");
+            b.Append(' ', pad); b.AppendLine("public byte[" + f.ArrayLength + "] " + f.GetFieldName() + " { get { return _" + f.GetFieldName() + "; } set { _" + f.GetFieldName() + " = value; } }");
+            //throw new NotImplementedException(); 
+        }
+        public virtual void GenerateFixedArrayParseBitBuffer(StringBuilder b, int pad, FieldDescriptor f, string bitBufferName) 
+        {
+            b.Append(' ', pad); b.AppendLine("public byte[" + f.ArrayLength + "] _" + f.GetFieldName() + ";");
+            b.Append(' ', pad); b.AppendLine("public byte[" + f.ArrayLength + "] " + f.GetFieldName() + " { get { return _" + f.GetFieldName() + "; } set { _" + f.GetFieldName() + " = value; } }");
+            //throw new NotImplementedException(); 
+        }
+        public virtual void GenerateFixedArrayEncodeBitBuffer(StringBuilder b, int pad, FieldDescriptor f, string bitBufferName) 
+        {
+            b.Append(' ', pad); b.AppendLine("public byte[" + f.ArrayLength + "] _" + f.GetFieldName() + ";");
+            b.Append(' ', pad); b.AppendLine("public byte[" + f.ArrayLength + "] " + f.GetFieldName() + " { get { return _" + f.GetFieldName() + "; } set { _" + f.GetFieldName() + " = value; } }");
+            //throw new NotImplementedException(); 
+        }
 
     }
     

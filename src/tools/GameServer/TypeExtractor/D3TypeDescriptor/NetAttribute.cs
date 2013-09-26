@@ -31,6 +31,7 @@ namespace D3TypeDescriptor
         Float16,
         Float16Or32,
         Float32,
+        Null,
     }
 
     public class NetAttribute
@@ -87,6 +88,10 @@ namespace D3TypeDescriptor
             for (int i = 0; i < Attributes.Length; i++)
             {
                 var a = Attributes[i];
+                if (a == null)
+                {
+                    continue;
+                }
                 root.Add(new XElement("Entry",
                         new XAttribute("Id", a.Id),
                         new XAttribute("U2", a.U2),
